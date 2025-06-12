@@ -8,6 +8,16 @@ export interface Comment {
   timestamp: string;
 }
 
+export interface User {
+  id: string;
+  username: string;
+  email: string;
+  avatar: string;
+  followers: string[];
+  following: string[];
+  posts: number;
+}
+
 export interface Post {
   id: string;
   userId: string;

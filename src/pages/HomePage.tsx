@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import Header from '../components/Header';
 import PostCard from '../components/PostCard';
-import { Post } from '../types/Post';
+import { Post, Comment } from '../types/Post';
+import { useToast } from '@/hooks/use-toast';
 
 const HomePage = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -34,6 +36,32 @@ const HomePage = () => {
           likedBy: isLiked 
             ? post.likedBy.filter(id => id !== user!.id)
             : [...post.likedBy, user!.id]
+        };
+      }
+      return post;
+    });
+    
+    setPosts(updatedPosts);
+    localStorage.setItem('socialapp_posts', JSON.stringify(updatedPosts));
+  };
+
+  const handleDelete = (postId: string) => {
+    const updatedPosts = posts.filter(post => post.id !== postId);
+    setPosts(updatedPosts);
+    localStorage.setItem('socialapp_posts', JSON.stringify(updatedPosts));
+    
+    toast({
+      title: "Post deleted",
+      description: "Your post has been deleted successfully.",
+    });
+  };
+
+  const handleAddComment = (postId: string, comment: Comment) => {
+    const updatedPosts = posts.map(post => {
+      if (post.id === postId) {
+        return {
+          ...post,
+          comments: [...post.comments, comment]
         };
       }
       return post;
@@ -73,6 +101,8 @@ const HomePage = () => {
                 key={post.id} 
                 post={post} 
                 onLike={handleLike}
+                onDelete={handleDelete}
+                onAddComment={handleAddComment}
                 currentUserId={user.id}
               />
             ))

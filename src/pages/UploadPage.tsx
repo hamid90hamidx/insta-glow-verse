@@ -12,7 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Post } from '../types/Post';
 
 const UploadPage = () => {
-  const { user } = useAuth();
+  const { user, getAllUsers } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -61,10 +61,18 @@ const UploadPage = () => {
         timestamp: new Date().toISOString()
       };
 
-      // Save to localStorage (in a real app, save to database)
+      // Save to localStorage with better organization
       const existingPosts = JSON.parse(localStorage.getItem('socialapp_posts') || '[]');
       const updatedPosts = [newPost, ...existingPosts];
       localStorage.setItem('socialapp_posts', JSON.stringify(updatedPosts));
+
+      // Update user's post count
+      const users = getAllUsers();
+      const updatedUsers = users.map(u => 
+        u.id === user.id ? { ...u, posts: u.posts + 1 } : u
+      );
+      localStorage.setItem('socialapp_users', JSON.stringify(updatedUsers));
+      localStorage.setItem('socialapp_user', JSON.stringify({ ...user, posts: user.posts + 1 }));
 
       toast({
         title: "Post uploaded!",
