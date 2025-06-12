@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +11,7 @@ import ProfilePage from "./pages/ProfilePage";
 import UploadPage from "./pages/UploadPage";
 import NotFound from "./pages/NotFound";
 import { useState } from "react";
+import SettingsPage from "./pages/SettingsPage";
 
 const App = () => {
   const [queryClient] = useState(() => new QueryClient({
@@ -36,6 +36,7 @@ const App = () => {
               <Route path="/home" element={<HomePage />} />
               <Route path="/profile/:userId" element={<ProfilePage />} />
               <Route path="/upload" element={<UploadPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

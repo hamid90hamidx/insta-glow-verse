@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Camera, Home, Plus, User, LogOut } from 'lucide-react';
+import { Camera, Home, Plus, User, LogOut, Settings } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
@@ -79,6 +78,13 @@ const Header = () => {
               >
                 <User className="mr-2 h-4 w-4" />
                 Profile
+              </DropdownMenuItem>
+              <DropdownMenuItem 
+                onClick={() => navigate('/settings')}
+                className="text-white hover:bg-gray-800 cursor-pointer"
+              >
+                <Settings className="mr-2 h-4 w-4" />
+                Settings
               </DropdownMenuItem>
               <DropdownMenuSeparator className="bg-gray-800" />
               <DropdownMenuItem 

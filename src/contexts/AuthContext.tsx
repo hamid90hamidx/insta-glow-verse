@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 interface User {
@@ -17,6 +16,7 @@ interface AuthContextType {
   signup: (username: string, email: string, password: string) => Promise<boolean>;
   logout: () => void;
   updateAvatar: (avatarUrl: string) => void;
+  updateProfile: (updates: { username?: string; email?: string; password?: string }) => Promise<void>;
   followUser: (userId: string) => void;
   unfollowUser: (userId: string) => void;
   getAllUsers: () => User[];
@@ -142,6 +142,23 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     localStorage.setItem('socialapp_user', JSON.stringify(updatedUser));
   };
 
+  const updateProfile = async (updates: { username?: string; email?: string; password?: string }): Promise<void> => {
+    if (!user) return;
+    
+    const updatedUser = {
+      ...user,
+      ...(updates.username && { username: updates.username }),
+      ...(updates.email && { email: updates.email })
+    };
+    
+    const users = getAllUsers();
+    const updatedUsers = users.map(u => u.id === user.id ? updatedUser : u);
+    
+    updateUsersStorage(updatedUsers);
+    setUser(updatedUser);
+    localStorage.setItem('socialapp_user', JSON.stringify(updatedUser));
+  };
+
   const followUser = (userId: string) => {
     if (!user || user.id === userId) return;
     
@@ -210,6 +227,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       signup, 
       logout, 
       updateAvatar, 
+      updateProfile,
       followUser, 
       unfollowUser, 
       getAllUsers, 
