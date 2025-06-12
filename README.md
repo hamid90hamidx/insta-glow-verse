@@ -101,10 +101,10 @@ A modern, dark-themed social media platform built with React, TypeScript, and Vi
 
 ```sh
 # Step 1: Clone the repository
-git clone <YOUR_GIT_URL>
+git clone https://github.com/Ahmadjamil888/insta-glow-verse.git
 
 # Step 2: Navigate to the project directory
-cd <YOUR_PROJECT_NAME>
+cd insta-glow-verse
 
 # Step 3: Install dependencies
 npm i
