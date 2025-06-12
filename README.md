@@ -12,7 +12,7 @@ A modern, dark-themed social media platform built with React, TypeScript, and Vi
 - **👥 Multi-User System**: Multiple users can use the app simultaneously
 - **🔄 Real-time Interactions**: Like, comment, and follow users instantly
 - **📱 Responsive Design**: Works perfectly on desktop and mobile devices
-
+  
 ## 🚀 Key Features
 
 ### Authentication System
@@ -116,10 +116,6 @@ npm run dev
 ## 🌐 Deployment
 
 The easiest way to deploy your SocialVibe app:
-
-1. Open [Lovable](https://lovable.dev/projects/00174642-99b8-469e-85a2-df25681b0bcb)
-2. Click on **Share → Publish**
-3. Your app will be live instantly!
 
 ### Custom Domain
 You can connect a custom domain through:
