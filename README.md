@@ -12,7 +12,7 @@ A modern, dark-themed social media platform built with React, TypeScript, and Vi
 - **👥 Multi-User System**: Multiple users can use the app simultaneously
 - **🔄 Real-time Interactions**: Like, comment, and follow users instantly
 - **📱 Responsive Design**: Works perfectly on desktop and mobile devices
-  
+  <img src="https://raw.githubusercontent.com/Ahmadjamil888/insta-glow-verse/refs/heads/main/public/Screenshot%202025-06-12%20190831.png">
 ## 🚀 Key Features
 
 ### Authentication System
